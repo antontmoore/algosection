@@ -9,7 +9,8 @@ class Solution:
             if s[right] in have_already_met.keys():
                 left = max(left, have_already_met[s[right]] + 1)
 
-            ans = max(ans, right - left + 1)
+            substring_length = right - left + 1
+            ans = max(ans, substring_length)
 
             have_already_met[s[right]] = right
 
@@ -17,4 +18,4 @@ class Solution:
 
 if __name__ == "__main__":
     s = Solution()
-    s.lengthOfLongestSubstring("abba")
+    print(s.lengthOfLongestSubstring("abbbba"))
