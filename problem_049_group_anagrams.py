@@ -6,7 +6,7 @@ class Solution:
 
         d = dict()
         for s in strs:
-            sorted_s = tuple(sorted(s))
+            sorted_s = ''.join(sorted(s))
             d[sorted_s] = d.get(sorted_s, []) + [s]
 
         res = []
