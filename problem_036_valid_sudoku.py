@@ -2,26 +2,22 @@ from typing import List
 
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
-        # check strings
-        for s in board:
-            nums = [int(c) for c in s if c != '.']
-            if len(nums) != len(set(nums)):
-                return False
+        rows = [set() for _ in range(9)]
+        cols = [set() for _ in range(9)]
+        boxes = [set() for _ in range(9)]
 
-        # transpose
-        board = list(map(list, zip(*board)))
-        # check columns
-        for s in board:
-            nums = [int(c) for c in s if c != '.']
-            if len(nums) != len(set(nums)):
-                return False
-
-        # check squares
-        for box_str in [[0, 1, 2], [3, 4, 5], [6, 7, 8]]:
-            for box_col in [[0, 1, 2], [3, 4, 5], [6, 7, 8]]:
-                nums = [int(board[i][j]) for i in box_str for j in box_col if board[i][j] != '.']
-                if len(nums) != len(set(nums)):
+        for i in range(9):
+            for j in range(9):
+                box_index = 3 * (i // 3) + (j // 3)
+                val = board[i][j]
+                if val == '.':
+                    continue
+                if val in rows[i] or val in cols[j] or val in boxes[box_index]:
                     return False
+
+                rows[i].add(val)
+                cols[j].add(val)
+                boxes[box_index].add(val)
 
         return True
 
