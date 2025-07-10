@@ -9,14 +9,15 @@ class Solution:
                     return False
             return True
 
-        total_number_of_letters = idx('z') - idx('A')
+        total_number_of_letters = idx('z') - idx('A') + 1
         t_arr = [0 for _ in range(total_number_of_letters)]
         s_arr = [0 for _ in range(total_number_of_letters)]
 
         for c in t:
             t_arr[idx(c)] += 1
 
-        have, need = 0, len(t)
+        need = sum([1 for l in t_arr if l > 0])
+        have = 0
         min_length = 2 * len(s)
         best_window = ""
         l = 0
@@ -43,6 +44,8 @@ class Solution:
 if __name__ == "__main__":
     s = Solution()
 
-    res = s.minWindow("ADOBECODEBANC", "ABC")
-    res = s.minWindow("aa", "aa")
+    # res = s.minWindow("ADOBECODEBANC", "ABC")
+    # res = s.minWindow("aa", "aa")
+    res = s.minWindow("cgklivwehljxrdzpfdqsapogwvjtvbzahjnsejwnuhmomlfsrvmrnczjzjevkdvroiluthhpqtffhlzyglrvorgnalk",
+                      "mqfff")
     print(res)
